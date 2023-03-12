@@ -1,0 +1,56 @@
+.root{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.touxiang{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  margin-top: 30rpx;
+  margin-bottom: 10rpx;
+}
+.header{
+  display: flex;
+  flex-direction: column;
+  height:380rpx;
+  background: aliceblue;
+  justify-content: center;
+  align-items: center;
+}
+.login_btn{
+  top: 20rpx;
+}
+.item{
+  display: flex;
+  align-items: center;
+  padding: 25rpx;
+  background: white;
+  border-bottom: 1px solid gray;
+}
+/* 右箭头 */
+.right_arrow{
+  border:solid black;
+  border-width: 0 3px 3px 0;
+  padding:3px;
+  position: absolute;
+  right: 15px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+/* 去除button默认样式并设置 */
+.button{
+  width: 100%;
+  border: none;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  background-color: inherit;
+  line-height: 1.3;
+  font-size: 16px;
+}
+.button::after{
+  border:none;
+  border-radius: 0;
+}

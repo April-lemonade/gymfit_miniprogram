@@ -1,0 +1,95 @@
+<!--pages/fiting/index.wxml-->
+<view class="container">
+  <view class="rows">
+    <view style="display: flex;flex-direction: row;width: 60%;">
+      <view class='time'>{{minute}}:{{second}}</view>
+      <!-- <van-icon wx:if="{{start}}" name="pause-circle" bindtap="stopFit" size="20px" color="{{btnColor}}" />
+      <van-icon wx:if="{{!start}}" color="{{btnColor}}" size="20px" bindtap="startFit" name="play-circle" /> -->
+    </view>
+    <van-button wx:if="{{!start}}" bindtap="startFit" round color="{{btnColor}}" size="small">开始运动</van-button>
+    <van-button wx:if="{{start}}" bindtap="stopFit" round color="red" size="small">结束运动</van-button>
+    <!-- <image style="width: 20px;height:20px;" src="https://s3.bmp.ovh/imgs/2022/03/9e72d070179a4301.png" /> -->
+  </view>
+  <view class="rows" style="margin-top: 3%;">
+    <view style="display: flex;flex-direction: row;width: 40%;">
+      <!-- <van-icon name="edit" color="{{btnColor}}" style="margin-right: 3%;" /> -->
+      <view>{{sport.parts}}</view>
+    </view>
+    <view>{{sport.groupCount}}组 {{sport.moveCount}}动作 {{sport.columnCount}}容量</view>
+  </view>
+  <view style="padding:2%;margin-top: 3%;background-color: {{color}};">
+    <view class="rows" style="margin-top: 3%;">
+      <view style="display: flex;flex-direction: row;font-weight: bold;width: 70%;">
+        当前动作：{{sport.name}}
+      </view>
+      <van-icon wx:if="{{sound}}" color="{{btnColor}}" size="20px" name="volume" bindtap="mute" />
+      <van-icon wx:if="{{!sound}}" color="{{btnColor}}" size="20px" name="volume-o" bindtap="soundOut" />
+      <view style="width: 20px;height:20px;border-radius: 20px;background-color:{{color}}"></view>
+    </view>
+    <view class="rows" style="margin-top: 3%;">
+      <!-- <image style="width: 187px;height:170px;margin-right: 3%;" src="{{sport.img}}" /> -->
+      <image style="width: 187px;height:170px;margin-right: 3%;" src="https://s3.bmp.ovh/imgs/2022/04/21/c4892965a0d4bedb.jpg" />
+      <view style="display: flex;flex-direction: column;width: 40%;">
+        <view>错误次数：{{count}}</view>
+        <view>标准度：{{rate}}%</view>
+        <view>改进建议：</view>
+        <view>{{content}}</view>
+        <!-- <view>标准程度：{{sport.std}}%</view>
+        <view>错误次数：{{sport.erroCount}}次</view> -->
+        <!-- <view style="margin-top: 10%;">改进建议：</view> -->
+        <!-- <view wx:for="{{sport.advice}}">
+          {{index+1}}.{{item}}
+        </view> -->
+        <!-- <view>{{content}}</view> -->
+        <!-- <view>您做得很好！继续保持！</view> -->
+        <!-- <view style="color: {{btnColor}};text-align: right;margin-top:5%">查看更多</view> -->
+      </view>
+    </view>
+  </view>
+  <view class="rows" style="margin-top: 3%;margin-bottom: 3%;">
+    <van-button icon="plus" color="{{btnColor}}" size="small">加动作</van-button>
+    <van-button icon="orders-o" color="{{btnColor}}" size="small">写心得</van-button>
+  </view>
+  <view wx:for="{{allSports}}">
+    <view style="border-style: solid;padding-top: 5%;padding-bottom: 5%;border-width: 1px;border-color: {{themeColor}};">
+      <view style="display: flex;flex-direction:row">
+        <image style="width: 80px;height:80px;margin-right: 3%;" src="{{item.img}}" />
+        <view style="display: flex;flex-direction:column;">
+          <view style="display: flex;flex-direction: row;justify-content: space-between;">
+            <view style="width: 90%;">
+              <view wx:if="{{index != nowIndex}}" style="font-weight: bold;margin-bottom: 10%;">{{item.name}}</view>
+              <view wx:if="{{index == nowIndex}}" style="font-weight: bold;margin-bottom: 10%;color: {{btnColor}};">{{item.name}}</view>
+            </view>
+            <view style="width: 10%;">
+              {{item.nowColumn}}/{{item.stdColumn}}
+            </view>
+          </view>
+          <view style="margin-bottom: 10%;">{{item.groupCount}}组</view>
+          <view style="display: flex;flex-direction: row;width: 100%;">
+            <view wx:for="{{item.groupFinished}}">
+              <view style="background-color: {{btnColor}};width: 10px;height:10px;margin-right: 10px;border-radius: 20px;"></view>
+            </view>
+            <view wx:for="{{item.groupCount - item.groupFinished}}">
+              <view style="background-color: {{themeColor}};width: 10px;height:10px;margin-right: 10px;border-radius: 20px;"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:for="{{item.groups}}">
+      <view style="display: flex;flex-direction:row;justify-content: space-between;margin-left: 5%;margin-right: 5%">
+        <view style="background-color: {{themeColor}};width:40rpx;height:40rpx;padding:5px;margin-top: 5px;border-radius: 2px;text-align: center;">{{index+1}}</view>
+        <view style="display: flex;flex-direction: row;justify-content: center;align-items: center;width: 25%;">
+          <van-field input-align="center" value="{{ item.weight }}" border="{{ false }}" bind:change="onChange" />kg
+        </view>
+        <view style="display: flex;flex-direction: row;justify-content: center;align-items: center;width: 25%;">
+          <van-field input-align="center" value="{{ item.count }}" border="{{ false }}" bind:change="onChange" />次
+        </view>
+        <van-icon wx:if="{{item.finished}}" color="{{btnColor}}" name="checked" style="margin-left: 5%;" />
+        <van-icon wx:if="{{!item.finished}}" color="{{btnColor}}" name="passed" style="margin-left: 5%;" />
+        <van-icon color="{{btnColor}}" style="margin-left: 5%;" name="delete" />
+      </view>
+    </view>
+  </view>
+  <van-action-sheet style="margin-bottom: 10%;" show="{{ showDialog }}" bind:close="onClose" actions="{{ actions }}" bind:select="onSelect" bind:cancel="onClose" cancel-text="取消" />
+</view>

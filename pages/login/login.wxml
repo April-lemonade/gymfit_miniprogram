@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="title">GymFit-登录</view>
+  <view class="subtitle">开始您的智能健身之旅吧！</view>
+  <!-- <view class="register">还没有账号？<view class="registerBtn">注册</view>
+  </view>
+  <van-cell-group>
+    <van-field model:value="{{ username }}" placeholder="Email" label="用户名" center="true" />
+    <van-field model:value="{{ pwd }}" placeholder="密码" label="密码" password="true" center="true" />
+  </van-cell-group> -->
+  <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">微信一键登录</button>
+</view>

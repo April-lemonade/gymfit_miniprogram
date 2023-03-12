@@ -1,0 +1,60 @@
+<view>
+  <van-search value="{{ value }}" shape="round" placeholder="请输入食物名称" bind:search="onSearch" />
+  <view style="display: flex;z-index: -1;width: 100%;">
+    <van-tabs type="line" color="{{btnColor}}" style="width: 100%;">
+      <van-tab title="常见">
+        <scroll-view style="height:1250rpx" scroll-y="true">
+          <view wx:for="{{normalFood}}" wx:for-item="normal" wx:key="normal.id">
+            <view style="display: flex;flex-direction: row;margin: 20px;">
+              <image style="width: 50px;height:50px;" src="{{normal.img}}" />
+              <view style="display: flex;flex-direction: column;border-bottom: solid 1px #c7c7c7;width: 80%;padding: 3%;">
+                <view style="font-weight: bold;margin-bottom: 3%;">{{normal.name}}</view>
+                <view style="font-size: 12px;">{{normal.cal}}千卡/100{{normal.unit}}</view>
+              </view>
+            </view>
+          </view>
+          <view style="margin-bottom: 20%;width: 100%;text-align: center;font-size: 25rpx;color: #a7a7a7;">---- 我也是有底线的 ----
+          </view>
+        </scroll-view>
+
+      </van-tab>
+      <van-tab title="自定义">
+        <scroll-view style="height:1150rpx" scroll-y="true">
+          <view style="margin: 20px;display: flex;flex-direction: row;width: 90%;align-items: center;justify-content: center;border-bottom: solid 1px #c7c7c7;padding: 2%;" bindtap="goAddFood">
+            <van-icon size="30px" name="edit" />
+            <view>添加自定义食物</view>
+          </view>
+          <view wx:for="{{customFood}}" wx:for-item="custom" wx:key="custom.id">
+            <view style="display: flex;flex-direction: row;margin: 20px;">
+              <image style="width: 50px;height:50px;" src="{{custom.img}}" />
+              <view style="display: flex;flex-direction: column;border-bottom: solid 1px #c7c7c7;width: 80%;padding: 3%;">
+                <view style="font-weight: bold;margin-bottom: 3%;">{{custom.name}}</view>
+                <view style="font-size: 12px;">{{custom.cal}}千卡/100{{custom.unit}}</view>
+              </view>
+            </view>
+          </view>
+          <view style="margin-bottom: 20%;width: 100%;text-align: center;font-size: 25rpx;color: #a7a7a7;">---- 我也是有底线的 ----
+          </view>
+        </scroll-view>
+      </van-tab>
+    </van-tabs>
+  </view>
+  <view style="display: flex;flex-direction: row;padding-left: 5%;justify-content: space-between;justify-items: center;align-items: center;padding-right: 10%;z-index: 999;background: white;position: fixed;bottom:0rpx;width: 90%;">
+    <view style="width: 30%;">
+      <image wx:if="{{!addedFood}}" style="width: 110rpx;height:110rpx;object-fit: contain;" src="https://s1.328888.xyz/2022/05/08/459rm.png" />
+      <image wx:if="{{addedFood}}" style="width: 110rpx;height:110rpx;object-fit: contain;" src="https://s1.328888.xyz/2022/05/08/45GSP.png" bindtap="showAddedFood" />
+    </view>
+    <view style="width: 50%;">
+      <van-button block type="primary" round size="small">完成</van-button>
+    </view>
+  </view>
+  <van-action-sheet show="{{ show }}" z-index="{{100}}" bind:close="onClose" bind:select="onSelect">
+    <view style="margin-bottom: 10%;padding-left:5%;display: flex;flex-direction: row;justify-content: space-between;padding-right: 5%;padding-top: 5%;" wx:for="{{addedFood}}" wx:for-item="item" wx:key="item.id">
+      <view style="display: flex;flex-direction: row;width: 80%;">
+        <image style="width: 60px;height:60px;margin-right: 5%;" src="{{item.img}}"></image>
+        <view style="display: flex;flex-direction: column;">{{item.name}}</view>
+      </view>
+      <van-icon name="delete-o" size="{{20}}" />
+    </view>
+  </van-action-sheet>
+</view>

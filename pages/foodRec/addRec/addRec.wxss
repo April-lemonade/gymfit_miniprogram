@@ -1,0 +1,4 @@
+/* pages/foodRec/addRec/addRec.wxss */
+.test {
+  width: 80%;
+}

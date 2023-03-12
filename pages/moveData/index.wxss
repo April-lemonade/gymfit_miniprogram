@@ -1,0 +1,35 @@
+/* pages/moveData/index.wxss */
+.container {
+  margin: 5%;
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+}
+
+.icon {
+  background-size: cover;
+  display: inline-block;
+  width: 99%;
+  height: 700rpx;
+  border-style: solid;
+  border-width: 2rpx;
+  border-color: rgb(230, 230, 230);
+  border-radius: 10rpx;
+  justify-self: center;
+  position: relative;
+}
+
+.trainData {
+  border-style: solid;
+  border-color: rgb(230, 230, 230);
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.selected {
+  border-color: blue
+}

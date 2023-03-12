@@ -1,0 +1,211 @@
+<view class="container">
+  <view style="display: flex;flex-direction: row;">
+    <van-icon size="30" name="calendar-o" />
+    <view class="calander">
+      <view class="week">
+        <block wx:for="{{calandar}}" wx:for-item="day">
+          <view style="margin-left: 7%;">{{day.week}}</view>
+        </block>
+      </view>
+      <van-tabs active="0" swipe-threshold="7" color="{{btnColor}}">
+        <block wx:for="{{calandar}}" wx:for-item="day">
+          <van-tab title="{{day.day}}">
+          </van-tab>
+        </block>
+      </van-tabs>
+    </view>
+    <van-icon size="30" name="setting-o" />
+  </view>
+
+  <view style="background-color: {{themeColor}};" class="foodRec">
+    <view class="top">
+      <view class="left" style="background-color: {{btnColor}};">
+        <view style="margin: 2%;display: flex;flex-direction: row;">
+          <view style="font-weight: bold;">{{content.total}}千卡</view>
+          <view>/{{content.stdtotal}}千卡</view>
+        </view>
+      </view>
+      <view class="right" style="background-color: {{btnColor}};">
+        <view style="margin: 5%;">设置</view>
+        <view style="margin: 5%;">|</view>
+        <view style="margin: 5%;" bindtap="onClick">分享</view>
+      </view>
+    </view>
+    <view class="content">
+      <view class="each">
+        <view>蛋白质</view>
+        <van-progress style="margin-top: 5%;" stroke-width="6" percentage="{{content.protein}}" show-pivot="{{false}}" />
+        <view style="display: flex;flex-direction: row;font-size: 30rpx;">
+          {{content.protein}}克 / {{content.stdprotein}}克
+        </view>
+      </view>
+      <view class="each">
+        <view>碳水</view>
+        <van-progress style="margin-top: 5%;" stroke-width="6" percentage="{{content.carb}}" show-pivot="{{false}}" />
+        <view style="display: flex;flex-direction: row;font-size: 30rpx;">
+          {{content.carb}}克 / {{content.stdcarb}}克
+        </view>
+      </view>
+      <view class="each">
+        <view>脂肪</view>
+        <van-progress style="margin-top: 5%;" stroke-width="6" percentage="{{content.fat}}" show-pivot="{{false}}" />
+        <view style="display: flex;flex-direction: row;font-size: 30rpx;">
+          {{content.fat}}克 / {{content.stdfat}}克
+        </view>
+      </view>
+      <view class="each">
+        <view>水</view>
+        <van-progress style="margin-top: 5%;" stroke-width="6" percentage="{{content.water}}" show-pivot="{{false}}" />
+        <view style="display: flex;flex-direction: row;font-size: 28rpx;">
+          {{content.water}}ml / {{content.stdwater}}ml
+        </view>
+      </view>
+    </view>
+    <view class="btn">
+      <view style="background-color:{{btnColor}};width: 25%;border-radius: 30rpx;text-align: center;justify-self: center;">
+        <view style="color: white;margin: 5%;">智能食谱</view>
+      </view>
+    </view>
+  </view>
+  <!-- <van-icon name="add" size="60px" color="{{btnColor}}" bind:click="onClick1" /> -->
+  <view class="subtitles">
+    <view style="display: flex;flex-direction: row;width: 60%;background-color: {{themeColor}};justify-content: center;margin: 5%;text-align: center;border-radius: 20rpx;">
+      <view class="subtitle">蛋白</view>
+      <view class="subtitle">|</view>
+      <view class="subtitle">碳水</view>
+      <view class="subtitle">|</view>
+      <view class="subtitle">脂肪</view>
+      <view class="subtitle" style="font-weight: bold;">食物库</view>
+    </view>
+  </view>
+
+  <view class="recordlist" style="background-color: {{themeColor}};margin-bottom: 10%;border-radius: 10rpx;">
+    <view style="margin: 10%;display: flex;flex-direction: column;align-items: flex-start;">
+      <view style="display: flex;flex-direction: row;justify-content: space-between;width:85%;margin-bottom: 5%;">
+        <view style="font-weight: bold;font-size: 40rpx;">早餐</view>
+        <view style="display: flex;flex-direction: row;font-size: 25rpx;">
+          <view style="color: yellowgreen;">7g</view>
+          <view style="margin-left: 10%;margin-right: 10%;">|</view>
+          <view style="color: rgb(215, 193, 243);"> 7g</view>
+          <view style="margin-left: 10%;margin-right: 10%;">|</view>
+          <view style="color: rgb(231, 141, 141);"> 7g</view>
+          <view style="margin-left: 10%;margin-right: 10%;">|</view>
+          <view>225Kcal</view>
+        </view>
+      </view>
+      <view style="display: flex;flex-direction: row;width: 100%;">
+        <image style="width:100rpx;height:100rpx;border-radius: 20rpx;" src="https://i.bmp.ovh/imgs/2022/04/04/9448a95c80f5af58.jpg" />
+        <view style="margin-left: 10%;">
+          <view style="font-weight:bold">鲜玉米</view>
+          <view>191g</view>
+          <view style="display: flex;flex-direction: row;font-size: 25rpx;">
+            <view style="color: yellowgreen;">7</view>
+            <view style="margin-left: 10%;margin-right: 10%;">|</view>
+            <view style="color: rgb(215, 193, 243);"> 7</view>
+            <view style="margin-left: 10%;margin-right: 10%;">|</view>
+            <view style="color: rgb(231, 141, 141);"> 7</view>
+            <view style="margin-left: 10%;margin-right: 10%;">|</view>
+            <view>225Kcal</view>
+          </view>
+        </view>
+      </view>
+
+      <view style="display: flex;flex-direction: row;justify-content: space-between;width:85%;margin-bottom: 5%;margin-top: 10%;">
+        <view style="font-weight: bold;font-size: 40rpx;">午餐</view>
+        <view style="display: flex;flex-direction: row;font-size: 25rpx;">
+          <view style="color: yellowgreen;">1g</view>
+          <view style="margin-left: 10%;margin-right: 10%;">|</view>
+          <view style="color: rgb(215, 193, 243);"> 12g</view>
+          <view style="margin-left: 10%;margin-right: 10%;">|</view>
+          <view style="color: rgb(231, 141, 141);"> 0g</view>
+          <view style="margin-left: 10%;margin-right: 10%;">|</view>
+          <view>58Kcal</view>
+        </view>
+      </view>
+      <view style="display: flex;flex-direction: row;width: 100%;">
+        <image style="width:100rpx;height:100rpx;border-radius: 20rpx;" src="https://i.bmp.ovh/imgs/2022/04/04/99e74f31afdf966d.jpg" />
+        <view style="margin-left: 10%;">
+          <view style="font-weight:bold">米饭</view>
+          <view>50g</view>
+          <view style="display: flex;flex-direction: row;font-size: 25rpx;">
+            <view style="color: yellowgreen;">1</view>
+            <view style="margin-left: 10%;margin-right: 10%;">|</view>
+            <view style="color: rgb(215, 193, 243);"> 12</view>
+            <view style="margin-left: 10%;margin-right: 10%;">|</view>
+            <view style="color: rgb(231, 141, 141);"> 0</view>
+            <view style="margin-left: 10%;margin-right: 10%;">|</view>
+            <view>58Kcal</view>
+          </view>
+        </view>
+      </view>
+      <view>
+      </view>
+
+      <view style="display: flex;flex-direction: row;justify-content: space-between;width:85%;margin-bottom: 5%;margin-top: 10%;">
+        <view style="font-weight: bold;font-size: 40rpx;">晚餐</view>
+        <view style="display: flex;flex-direction: row;font-size: 25rpx;">
+          <view style="color: yellowgreen;">21g</view>
+          <view style="margin-left: 10%;margin-right: 10%;">|</view>
+          <view style="color: rgb(215, 193, 243);"> 80g</view>
+          <view style="margin-left: 10%;margin-right: 10%;">|</view>
+          <view style="color: rgb(231, 141, 141);"> 10g</view>
+          <view style="margin-left: 10%;margin-right: 10%;">|</view>
+          <view>494Kcal</view>
+        </view>
+      </view>
+      <view style="display: flex;flex-direction: row;width: 100%;">
+        <image style="width:100rpx;height:100rpx;border-radius: 20rpx;" src="https://i.bmp.ovh/imgs/2022/04/04/56030c30436fa80a.jpg" />
+        <view style="margin-left: 10%;">
+          <view style="font-weight:bold">西红柿鸡蛋面</view>
+          <view>500g</view>
+          <view style="display: flex;flex-direction: row;font-size: 25rpx;">
+            <view style="color: yellowgreen;">21</view>
+            <view style="margin-left: 10%;margin-right: 10%;">|</view>
+            <view style="color: rgb(215, 193, 243);"> 80</view>
+            <view style="margin-left: 10%;margin-right: 10%;">|</view>
+            <view style="color: rgb(231, 141, 141);"> 10</view>
+            <view style="margin-left: 10%;margin-right: 10%;">|</view>
+            <view>494Kcal</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- <view>尚无记录</view>
+      <view>点击下方按钮记录</view> -->
+    </view>
+  </view>
+  <view style="margin-bottom: 10%;width: 100%;text-align: center;font-size: 25rpx;color: #a7a7a7;">---- 我也是有底线的 ----
+  </view>
+  <view style="bottom: 30px;right: 20px;position: fixed;">
+    <van-icon name="add" size="60px" color="{{btnColor}}" bind:click="onClick1" />
+  </view>
+  <van-share-sheet show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="onSelect" bind:close="onClose" />
+  <!-- <van-sticky >
+    <van-icon name="add" size="60px" color="{{btnColor}}" bind:click="" />
+  </van-sticky> -->
+  <van-share-sheet show="{{ show }}" options="{{ actions }}" bind:close="onClose1" bind:select="onSelect1" />
+  <!-- <view class='col' style="background-color: {{themeColor}};">
+    <view style="display: flex;flex-direction: row;margin-left: 5%;margin-right: 5%;justify-content:space-between;margin: 3%;width:100%">
+      <view class='block'>
+        <view>+早餐</view>
+        <image style="width:40rpx;height:40rpx" src="https://s3.bmp.ovh/imgs/2022/02/a94038dd9655ab3f.png" />
+      </view>
+      <view class='block'>
+        <view>+午餐</view>
+        <image style="width:40rpx;height:40rpx" src="https://s3.bmp.ovh/imgs/2022/02/a94038dd9655ab3f.png" />
+      </view>
+      <view class='block'>
+        <view>+晚餐</view>
+        <image style="width:40rpx;height:40rpx" src="https://s3.bmp.ovh/imgs/2022/02/a94038dd9655ab3f.png" />
+      </view>
+      <view class='block'>
+        <view>+加餐</view>
+        <image style="width:40rpx;height:40rpx" src="https://s3.bmp.ovh/imgs/2022/02/a94038dd9655ab3f.png" />
+      </view>
+      <view class='block'>
+        <view>+喝水</view>
+        <image style="width:40rpx;height:40rpx" src="https://s3.bmp.ovh/imgs/2022/02/a94038dd9655ab3f.png" />
+      </view>
+    </view>
+  </view> -->
+</view>

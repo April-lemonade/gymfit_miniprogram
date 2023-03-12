@@ -1,0 +1,73 @@
+<view class="container">
+  <!-- <van-tabs type="line" style="width: 100%;" color="{{btnColor}}">
+    <van-tab title="历史">
+      <van-calendar show-title="{{false}}" color="{{btnColor}}" poppable="{{ false }}" show-confirm="{{ false }}" class="calendar" />
+    </van-tab>
+    <van-tab title="统计">
+      <view style="height: 40rpx;"></view>
+      <van-tabs type="card" color="{{btnColor}}" style="margin-top: 5%;">
+        <van-tab title="周">内容 1</van-tab>
+        <van-tab title="月">内容 2</van-tab>
+        <van-tab title="年">内容 3</van-tab>
+      </van-tabs>
+      <view style="font-size: 40rpx;font-weight: bold;margin-bottom: 3%;">部位概览</view>
+      <view class="icon" style="background-image: url({{baseUrl}});">
+        <view style="margin: 5%;">粗略图形化部位训练的频率</view>
+        <view style="right:10rpx;bottom: 10rpx;position: absolute;display: flex;flex-direction: row;">
+          <view style="font-size: 25rpx;">高频</view>
+          <view style="width: 25rpx;height: 25rpx;background-color: purple;"></view>
+          <view style="width: 25rpx;height: 25rpx;background-color: blue;"></view>
+          <view style="width: 25rpx;height: 25rpx;background-color: green;"></view>
+          <view style="width: 25rpx;height: 25rpx;background-color: yellow;"></view>
+          <view style="width: 25rpx;height: 25rpx;background-color: orange;"></view>
+          <view style="width: 25rpx;height: 25rpx;background-color: red;"></view>
+          <view style="font-size: 25rpx;">低频</view>
+        </view>
+      </view>
+      <view style="font-size: 40rpx;font-weight: bold;margin-bottom: 3%;">本次动作训练规范</view>
+      <view class="trainData">
+        <view style="display: flex;flex-direction: column;">
+          <view>· 标准程度：{{std}}%</view>
+          <view>· 错误次数{{erroCount}}次</view>
+          <view>· 改进建议：</view>
+          <view wx:for="{{advice}}" wx:key="{{advice.index}}" wx:for-item="each">
+            {{each.index+1}}{{each.content}}
+          </view>
+        </view>
+      </view>
+    </van-tab>
+  </van-tabs> -->
+  <view style="font-size: 40rpx;font-weight: bold;margin-bottom: 3%;color: {{btnColor}};">部位概览</view>
+  <van-tabs type="card" color="{{btnColor}}" style="margin-bottom: 5%;">
+    <van-tab title="周"></van-tab>
+    <van-tab title="月"></van-tab>
+    <van-tab title="年"></van-tab>
+  </van-tabs>
+  <view class="icon" style="background-image: url({{baseUrl}});">
+    <view style="margin: 5%;">粗略图形化部位训练的频率</view>
+    <view style="right:10rpx;bottom: 10rpx;position: absolute;display: flex;flex-direction: row;">
+      <view style="font-size: 25rpx;">高频</view>
+      <view style="width: 25rpx;height: 25rpx;background-color: purple;"></view>
+      <view style="width: 25rpx;height: 25rpx;background-color: blue;"></view>
+      <view style="width: 25rpx;height: 25rpx;background-color: green;"></view>
+      <view style="width: 25rpx;height: 25rpx;background-color: yellow;"></view>
+      <view style="width: 25rpx;height: 25rpx;background-color: orange;"></view>
+      <view style="width: 25rpx;height: 25rpx;background-color: red;"></view>
+      <view style="font-size: 25rpx;">低频</view>
+    </view>
+  </view>
+  <!-- <view style="font-size: 40rpx;font-weight: bold;margin-bottom: 3%;">本次动作训练规范</view>
+  <view class="trainData">
+    <view style="display: flex;flex-direction: column;">
+      <view>· 标准程度：{{std}}%</view>
+      <view>· 错误次数{{erroCount}}次</view>
+      <view>· 改进建议：</view>
+      <view wx:for="{{advice}}" wx:key="{{advice.index}}" wx:for-item="each">
+        {{each.index+1}}{{each.content}}
+      </view>
+    </view>
+  </view> -->
+  <view style="background-color:{{btnColor}};border-radius: 20rpx;padding: 2%;width: 35%;color: white;margin-top: 5%;text-align: center;" bindtap="onDisplay" value="{{ today }}">{{today}}</view>
+  
+  <van-calendar color="{{btnColor}}" show="{{ show }}" bind:close="onClose" show-confirm="{{ false }}"  bind:confirm="onConfirm" />
+</view>

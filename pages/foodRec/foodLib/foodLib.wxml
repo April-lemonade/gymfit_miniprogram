@@ -1,0 +1,16 @@
+<!--pages/foodRec/foodLib/foodLib.wxml-->
+<view class="container">
+  <view style="display: flex;flex-direction: row;">
+    <view>
+      <van-sidebar active-key="{{ activeKey }}">
+        <van-sidebar-item title="蛋白质" />
+        <van-sidebar-item title="碳水" />
+        <van-sidebar-item title="脂肪" />
+        <van-sidebar-item title="蔬菜" />
+      </van-sidebar>
+    </view>
+    <view>scs</view>
+  </view>
+
+ 
+</view>

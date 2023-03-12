@@ -1,0 +1,174 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="title" style="color: {{btnColor}};font-weight: bold;">
+    饮食记录
+    <!-- <van-icon name="arrow" /> -->
+  </view>
+  <view class="foodRec" style="background-color: {{themeColor}};">
+    <view class="left">
+      <view class="time">
+        <view style="margin-right: 3%;">{{date}}</view>
+        <view>{{week}}</view>
+      </view>
+      <view class="cal">
+        已摄入<view style="font-size: 35rpx;font-weight: bold;">{{currentCal}}</view>
+        <view>/{{totalCal}}大卡</view>
+      </view>
+    </view>
+    <view class="right">
+      <view class="cal" wx:for="{{cal}}" wx:key="name" wx:for-item="each">
+        <view style="margin-right: 10%;">{{each.name}}</view>
+        <view style="margin-right: 10%;">{{each.count}}</view>
+        {{each.unit}}
+      </view>
+    </view>
+  </view>
+  <view class="tabs">
+    <view class="{{active==1?'active':'tab'}}" data-index='1' bindtap="switchTab">
+      <view style="margin: 8%;">我的计划</view>
+    </view>
+    <view class="{{active==2?'active':'tab'}}" data-index='2' bindtap="switchTab">
+      <view style="margin: 8%;">推荐计划</view>
+    </view>
+    <!-- <view class="{{active==3?'active':'tab'}}" data-index='3' bindtap="switchTab">
+      <view style="margin: 8%;">计划定制</view>
+    </view> -->
+  </view>
+  <view class="content">
+    <view wx:if="{{active==1}}">
+      <view class="weeks">
+        <view wx:for="{{calandar}}" wx:for-item="date">
+          <view>{{date.week}}</view>
+        </view>
+      </view>
+      <view style="width:100%;justify-content: space-between;align-items: center;">
+        <van-tabs swipe-threshold="8" animated color="{{btnColor}}">
+          <van-tab wx:for="{{calandar}}" wx:for-item="date" title="{{date.day}}">
+            <view style="display: flex;flex-direction: row;">
+              <!-- <view style="margin-top: 5%;margin-right: 20%;font-size: 35rpx;margin-bottom: 5%">今日训练
+              </view> -->
+              <!-- <view style="margin:5%;color: skyblue;">调整顺序</view>
+              <view style="margin: 5%;color: skyblue;">设置</view> -->
+            </view>
+            <view class="dailyTrain" style="background-color: {{themeColor}};margin-top: 5%;">
+              <view style="margin: 5%;font-weight: bold;">{{date.train.name}}</view>
+              <view style="margin-left:5%">{{date.train.moveCount}}个动作</view>
+              <view style="margin-left:5%;margin-bottom: 5%;">{{date.train.groupCount}}组</view>
+            </view>
+          </van-tab>
+        </van-tabs>
+      </view>
+      <!-- <view style="width:100%;display:flex;flex-direction:row;justify-content: space-between;">
+        <view wx:for="{{calandar}}" wx:for-item="date" wx:key="{{calandar.index}}">
+          <view style="display: flex;flex-direction: column;align-items: center;">
+            <view style="margin-bottom:30%">{{date.week}}</view>
+            <view>{{date.day}}</view>
+          </view>
+        </view>
+      </view> -->
+      <!-- <van-tabs color="{{btnColor}}">
+        <van-tab title="统计">
+          <view style="display: flex;flex-direction: row;margin-bottom: 10%;">
+            <view class="foodRec" style="flex-direction: column;text-align: center;margin: 5%;background-color: {{themeColor}};">
+              营养元素
+              <view style="margin-left: 30%;margin-bottom: 3%;" class="cal" wx:for="{{cal}}" wx:key="name" wx:for-item="each">
+                <view style="margin-right: 10%;">{{each.name}}</view>
+                <view style="margin-right: 10%;">{{each.count}}</view>
+                {{each.unit}}
+              </view>
+            </view>
+            <view>
+            </view>
+          </view>
+        </van-tab>
+        <van-tab title="相关文章">
+          <view style="margin-bottom: 25%;">
+            <view class="article" style="background-color: {{themeColor}};" wx:for="{{articles}}" wx:key="{{articles.index}}" wx:for-item="article">
+              <view style="margin: 5%;">【{{article.tag}}】{{article.title}}</view>
+              <view style="margin-left: 5%;margin-bottom: 5%;">{{article.subtract}}</view>
+            </view>
+          </view>
+        </van-tab>
+      </van-tabs> -->
+      <view style="margin-top: 5%;margin-right: 20%;font-size: 35rpx;margin-bottom: 5%;font-size: 40rpx;color: {{btnColor}};font-weight: bold;">相关文章</view>
+      <view style="margin-bottom: 5%;">
+        <view class="article" style="background-color: {{themeColor}};" wx:for="{{articles}}" wx:key="{{articles.article_id}}" wx:for-item="article">
+          <view data-src="{{article.content.news_item[0].url}}" bindtap="articleDetail" style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;justify-items: center;align-items: center;">
+            <view style="width: 60%;">
+              <view style="margin: 5%;font-weight: bold;">{{article.content.news_item[0].title}}</view>
+              <view style="margin:5%;margin-bottom: 5%;display: -webkit-box;-webkit-line-clamp: 3;overflow: hidden;overflow: hidden;-webkit-box-orient: vertical;word-break: break-all; ">{{article.content.news_item[0].digest}}</view>
+            </view>
+            <image style="width: 300rpx;height:200rpx;margin: 2%;border-radius: 10px;" src="{{article.content.news_item[0].thumb_url}}" />
+          </view>
+        </view>
+      </view>
+      <view style="margin-bottom: 10%;width: 100%;text-align: center;font-size: 25rpx;color: #a7a7a7;">---- 我也是有底线的 ----
+      </view>
+    </view>
+    <view wx:if="{{active==2}}">
+      <!-- <van-tabs color="{{btnColor}}">
+        <van-tab title="增肌">
+          
+        </van-tab>
+        <van-tab title="减脂">内容 2</van-tab>
+      </van-tabs> -->
+      <!-- 新手标题 -->
+      <view style="display: flex; flex-direction: row;">
+        <view style="height: 40rpx; width: 10rpx;background-color: {{btnColor}};margin:2%;border-radius: 10rpx;">
+        </view>
+        <view style="margin:2%">新手</view>
+      </view>
+      <!-- 新手内容 -->
+      <view style="width:100%;display: flex; flex-direction: row;flex-wrap: wrap;">
+        <block wx:for="{{buildMuscle1}}" wx:key="{{buildMuscle1.index}}" wx:for-item="each">
+          <view style="display: flex; flex-direction: column;font-size: 25rpx;width: 28%;margin:2%;background-color: {{btnColor}};text-align: center;color: white;border-radius: 20rpx;">
+            <!-- <view style="margin:2%;width:28%;height:110rpx;background-image: url({{each.img}});background-repeat: no-repeat;justify-content: flex-end;">
+                </view> -->
+            <image src="{{each.img}}" style="width: 100%;height: 110rpx;" mode="aspectFill" />
+            <view style="font-weight: bold;">{{each.title}}</view>
+            <view>{{each.subtitle}}</view>
+          </view>
+        </block>
+      </view>
+      <!-- 进阶标题 -->
+      <view style="display: flex; flex-direction: row;">
+        <view style="height: 40rpx; width: 10rpx;background-color: {{btnColor}};margin:2%;border-radius: 10rpx;">
+        </view>
+        <view style="margin:2%">进阶</view>
+      </view>
+      <!-- 进阶内容 -->
+      <view style="width:100%;display: flex; flex-direction: row;flex-wrap: wrap;">
+        <block wx:for="{{buildMuscle2}}" wx:key="{{buildMuscle2.index}}" wx:for-item="each">
+          <view style="display: flex; flex-direction: column;font-size: 25rpx;width: 28%;margin:2%;background-color: {{btnColor}};text-align: center;color: white;border-radius: 20rpx;margin-bottom: 4%;">
+            <!-- <view style="margin:2%;width:28%;height:110rpx;background-image: url({{each.img}});background-repeat: no-repeat;justify-content: flex-end;">
+                </view> -->
+            <image src="{{each.img}}" style="width: 100%;height: 110rpx;" mode="aspectFill" />
+            <view style="font-weight: bold;">{{each.title}}</view>
+            <view style="margin-bottom: 10%;">{{each.subtitle}}</view>
+          </view>
+        </block>
+      </view>
+      <!-- 自重标题 -->
+      <!-- <view style="display: flex; flex-direction: row;">
+        <view style="height: 40rpx; width: 10rpx;background-color: {{btnColor}};margin:2%;border-radius: 10rpx;">
+        </view>
+        <view style="margin:2%">自重</view>
+      </view> -->
+      <!-- 自重内容 -->
+      <!-- <view style="margin-bottom: 25%;">
+        <view style="width:100%;display: flex; flex-direction: row;flex-wrap: wrap;">
+          <block wx:for="{{buildMuscle3}}" wx:key="{{buildMuscle3.index}}" wx:for-item="each">
+            <view style="display: flex; flex-direction: column;font-size: 25rpx;width: 28%;margin:2%;background-color: {{btnColor}};text-align: center;color: white;border-radius: 20rpx;">
+              <image src="{{each.img}}" style="width: 100%;height: 110rpx;border-radius: 20rpx;" mode="aspectFill" />
+              <view style="font-weight: bold;">{{each.title}}</view>
+              <view>{{each.subtitle}}</view>
+            </view>
+          </block>
+        </view>
+      </view> -->
+      <view style="margin-bottom: 10%;width: 100%;text-align: center;font-size: 25rpx;color: #a7a7a7;">---- 我也是有底线的 ----
+      </view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,5 @@
+/* pages/moveLib/index.wxss */
+.container {
+  display: flex;
+  flex-direction: row;
+}
